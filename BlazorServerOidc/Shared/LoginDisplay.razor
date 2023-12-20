@@ -1,0 +1,9 @@
+﻿<AuthorizeView>
+    <Authorized>
+        Hello, @context.User.Identity?.Name!
+        <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Log out</a>
+    </Authorized>
+    <NotAuthorized>
+        <a asp-area="" asp-page="/Index">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
