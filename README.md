@@ -6,3 +6,4 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 ## Links
 
+https://stackoverflow.com/questions/64853618/oidc-authentication-in-server-side-blazor
