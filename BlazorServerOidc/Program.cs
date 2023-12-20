@@ -2,84 +2,78 @@ using BlazorServerOidc.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace BlazorServerOidc
+namespace BlazorServerOidc;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddAuthentication(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+        })
+        .AddCookie()
+        .AddOpenIdConnect(options =>
+        {
+            builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
 
-            builder.Services.AddAuthentication(options =>
+            options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.ResponseType = OpenIdConnectResponseType.Code;
+
+            options.SaveTokens = true;
+            options.GetClaimsFromUserInfoEndpoint = true;
+            options.TokenValidationParameters = new TokenValidationParameters
             {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddCookie()
-            .AddOpenIdConnect(options =>
-            {
-                builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
+                NameClaimType = "name"
+            };
+        });
 
-                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.ResponseType = OpenIdConnectResponseType.Code;
+        builder.Services.AddRazorPages().AddMvcOptions(options =>
+        {
+            var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+            options.Filters.Add(new AuthorizeFilter(policy));
+        });
 
-                options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name"
-                };
-            });
+        builder.Services.AddServerSideBlazor();
+        builder.Services.AddSingleton<WeatherForecastService>();
 
-            builder.Services.AddRazorPages().AddMvcOptions(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            });
+        var app = builder.Build();
 
-            builder.Services.AddServerSideBlazor();
-            builder.Services.AddSingleton<WeatherForecastService>();
+        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            var app = builder.Build();
-
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
-
-            app.Run();
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapRazorPages();
+        });
+
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        app.Run();
     }
 }

@@ -1,7 +1,7 @@
 ﻿<AuthorizeView>
     <Authorized>
         @context.User.Identity?.Name
-        <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Log out</a>
+        <a href="logout">Log out</a>
     </Authorized>
     <NotAuthorized>
         <a href="login?redirectUri=/">Log in</a>
