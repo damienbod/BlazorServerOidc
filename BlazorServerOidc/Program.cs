@@ -57,6 +57,10 @@ public class Program
             app.UseHsts();
         }
 
+        app.UseSecurityHeaders(
+            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
+                app.Configuration["OpenIDConnectSettings:Authority"]));
+
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();
