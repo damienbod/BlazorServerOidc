@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
 @model BlazorServerOidc.Pages.SignedOutModel
 @{
     ViewData["Title"] = "SignedOut";
@@ -14,35 +15,41 @@
     <link href="BlazorServerOidc.styles.css" rel="stylesheet" />
 </head>
 <body>
-
-    <div class="page">
-        <div class="sidebar">
-            <div class="top-row ps-3 navbar navbar-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="">BlazorServerOidc</a>
-                    <button title="Navigation menu" class="navbar-toggler">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Blazor Server OIDC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                        <a href="login?redirectUri=/">Log in</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <div>
-                <nav class="flex-column">
-                    
-                </nav>
-            </div>
-        </div>
-
-        <main>
-            <div class="top-row px-4">
-                <a href="login?redirectUri=/">Log in</a>
-            </div>
-
-            <article class="content px-4">
-                <h1>Signed out</h1>
-            </article>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <p>You have successfully signed out</p>
         </main>
     </div>
 
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            Signed out
+        </div>
+    </footer>
+
+    <script asp-add-nonce src="js/bootstrap.bundle.min.js"></script>
+    <!-- Add chart.js reference if chart components are used in your application. -->
+    <script asp-add-nonce src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js" integrity="sha512-gQhCDsnnnUfaRzD8k1L5llCCV6O9HN09zClIzzeJ8OJ9MpGmIlCxm+pdCkqTwqJ4JcjbojFr79rl2F1mzcoLMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Add chartjs-plugin-datalabels.min.js reference if chart components with data label feature is used in your application. -->
+    <script asp-add-nonce src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script asp-add-nonce src="js/blazor.bootstrap.js"></script>
 </body>
 </html>
