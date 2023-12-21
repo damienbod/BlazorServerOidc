@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using OpenIddict.Abstractions;
 using OpeniddictServer.Data;
+using static System.Net.WebRequestMethods;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace OpeniddictServer;
@@ -26,6 +27,10 @@ public class Worker : IHostedService
         {
             var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
 
+            //var dd = await manager.FindByClientIdAsync("oidc-pkce-confidential");
+            
+            //await manager.DeleteAsync(dd);
+            
             // OIDC Code flow confidential client
             if (await manager.FindByClientIdAsync("oidc-pkce-confidential") is null)
             {
@@ -40,11 +45,13 @@ public class Worker : IHostedService
                     },
                     PostLogoutRedirectUris =
                     {
-                        new Uri("https://localhost:5001/signout-callback-oidc")
+                        new Uri("https://localhost:5001/signout-callback-oidc"),
+                        new Uri("https://localhost:64265/signout-callback-oidc")
                     },
                     RedirectUris =
                     {
-                        new Uri("https://localhost:5001/signin-oidc")
+                        new Uri("https://localhost:5001/signin-oidc"),
+                        new Uri("https://localhost:64265/signin-oidc"),
                     },
                     ClientSecret = "oidc-pkce-confidential_secret",
                     Permissions =
