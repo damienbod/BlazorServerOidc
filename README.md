@@ -6,7 +6,9 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 ## Links
 
-https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/?view=aspnetcore-6.0
+https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/
+
+https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive-server-side-rendering
 
 https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/quick-start-blazor-server-app
 

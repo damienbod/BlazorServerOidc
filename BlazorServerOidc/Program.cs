@@ -75,7 +75,7 @@ public class Program
             endpoints.MapRazorPages();
         });
 
-        app.MapBlazorHub();
+        app.MapBlazorHub().RequireAuthorization();
         app.MapFallbackToPage("/_Host");
 
         app.Run();
