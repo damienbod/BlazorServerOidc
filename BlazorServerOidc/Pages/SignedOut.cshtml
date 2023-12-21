@@ -4,5 +4,45 @@
     ViewData["Title"] = "SignedOut";
 }
 
-<h1>Signed out</h1>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="BlazorServerOidc.styles.css" rel="stylesheet" />
+</head>
+<body>
 
+    <div class="page">
+        <div class="sidebar">
+            <div class="top-row ps-3 navbar navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="">BlazorServerOidc</a>
+                    <button title="Navigation menu" class="navbar-toggler">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <nav class="flex-column">
+                    
+                </nav>
+            </div>
+        </div>
+
+        <main>
+            <div class="top-row px-4">
+                <a href="login?redirectUri=/">Log in</a>
+            </div>
+
+            <article class="content px-4">
+                <h1>Signed out</h1>
+            </article>
+        </main>
+    </div>
+
+</body>
+</html>
