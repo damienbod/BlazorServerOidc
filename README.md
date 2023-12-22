@@ -21,3 +21,5 @@ https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/interactive
 https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/quick-start-blazor-server-app
 
 https://stackoverflow.com/questions/64853618/oidc-authentication-in-server-side-blazor
+
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims
