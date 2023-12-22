@@ -29,7 +29,6 @@ public static class SecurityHeadersDefinitions
 
                 builder.AddScriptSrc()
                     .WithNonce()
-                    //.UnsafeEval() // due to Blazor 
                     .UnsafeInline(); // only a fallback for older browsers when the nonce is used
 
                 // disable script and style CSP protection if using Blazor hot reload
