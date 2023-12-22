@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Logging;
 using OpeniddictServer.Data;
 using Quartz;
 using Serilog;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -26,7 +27,7 @@ internal static class HostingExtensions
         services.AddDbContext<ApplicationDbContext>(options =>
         {
             // Configure the context to use Microsoft SQL Server.
-            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 
             // Register the entity sets needed by OpenIddict.
             // Note: use the generic overload if you need

@@ -4,6 +4,14 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [![.NET](https://github.com/damienbod/BlazorServerOidc/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/BlazorServerOidc/actions/workflows/dotnet.yml)
 
+### Powershell
+
+Add-Migration "init_sts" -c ApplicationDbContext  
+
+## Running manually
+
+Update-Database -Context ApplicationDbContext
+
 ## Links
 
 https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/
