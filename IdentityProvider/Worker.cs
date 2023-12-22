@@ -1,7 +1,6 @@
-﻿using System.Globalization;
-using OpenIddict.Abstractions;
+﻿using OpenIddict.Abstractions;
 using OpeniddictServer.Data;
-using static System.Net.WebRequestMethods;
+using System.Globalization;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace OpeniddictServer;
@@ -28,9 +27,9 @@ public class Worker : IHostedService
             var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
 
             //var dd = await manager.FindByClientIdAsync("oidc-pkce-confidential");
-            
+
             //await manager.DeleteAsync(dd);
-            
+
             // OIDC Code flow confidential client
             if (await manager.FindByClientIdAsync("oidc-pkce-confidential") is null)
             {

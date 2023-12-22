@@ -6,7 +6,6 @@ using Microsoft.IdentityModel.Logging;
 using OpeniddictServer.Data;
 using Quartz;
 using Serilog;
-using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -154,7 +153,7 @@ internal static class HostingExtensions
 
         return builder.Build();
     }
-    
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;
