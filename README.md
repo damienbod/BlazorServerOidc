@@ -24,6 +24,10 @@ https://stackoverflow.com/questions/64853618/oidc-authentication-in-server-side-
 
 https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims
 
+https://openid.net/developers/how-connect-works/
+
 https://github.com/openiddict/openiddict-core
 
 https://datatracker.ietf.org/doc/html/rfc9126
+
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims
