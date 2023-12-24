@@ -11,6 +11,10 @@ namespace BlazorServerOidc.Pages;
 /// TODO: small improvement 
 /// Remove the IgnoreAntiforgeryToken attrbute and 
 /// add the protection to the logout form request if using post
+/// 
+/// It is also possible to use a GET for the logout
+/// Care must be taken with open redirect attacks, 
+/// only allow relative paths if accepting form parameters.
 /// </summary>
 [Authorize]
 [IgnoreAntiforgeryToken]
