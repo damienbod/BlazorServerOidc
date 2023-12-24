@@ -31,3 +31,5 @@ https://github.com/openiddict/openiddict-core
 https://datatracker.ietf.org/doc/html/rfc9126
 
 https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims
+
+https://stackoverflow.com/questions/59121741/anti-forgery-token-validation-in-mvc-app-with-blazor-server-side-component
