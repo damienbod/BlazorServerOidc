@@ -2,7 +2,7 @@
     <Authorized>
         <span>@context.User.Identity?.Name</span>
         <form action="logout" method="post">
-            <AntiforgeryToken />
+
             <input type="hidden" name="ReturnUrl" value="/SignedOut" />
             <button type="submit" class="nav-link btn btn-link text-dark">
                  Logout 

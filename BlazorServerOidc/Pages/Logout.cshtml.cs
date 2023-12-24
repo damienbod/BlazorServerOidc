@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace BlazorServerOidc.Pages;
 
 [Authorize]
-[IgnoreAntiforgeryToken]
+[IgnoreAntiforgeryToken] // TODO remove this and add the protection to the logout form request
 public class LogoutModel : PageModel
 {
     public void OnGet()
