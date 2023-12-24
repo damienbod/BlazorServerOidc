@@ -15,15 +15,15 @@ namespace BlazorServerOidc.Pages;
 [IgnoreAntiforgeryToken]
 public class LogoutModel : PageModel
 {
-    public IActionResult OnGetAsync()
-    {
-        return SignOut(new AuthenticationProperties
-        {
-            RedirectUri = "/SignedOut"
-        },
-        CookieAuthenticationDefaults.AuthenticationScheme,
-        OpenIdConnectDefaults.AuthenticationScheme);
-    }
+    //public IActionResult OnGetAsync()
+    //{
+    //    return SignOut(new AuthenticationProperties
+    //    {
+    //        RedirectUri = "/SignedOut"
+    //    },
+    //    CookieAuthenticationDefaults.AuthenticationScheme,
+    //    OpenIdConnectDefaults.AuthenticationScheme);
+    //}
 
     public IActionResult OnPostAsync()
     {
