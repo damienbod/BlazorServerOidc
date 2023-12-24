@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace BlazorServerOidc.Pages;
 
 /// <summary>
-/// TODO remove IgnoreAntiforgeryToken and add the protection to 
-/// the logout form request if using post
+/// TODO: small improvement 
+/// Remove the IgnoreAntiforgeryToken attrbute and 
+/// add the protection to the logout form request if using post
 /// </summary>
 [Authorize]
 [IgnoreAntiforgeryToken]
