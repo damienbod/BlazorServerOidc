@@ -15,11 +15,11 @@ public class LogoutModel : PageModel
     {
     }
 
-    public IActionResult OnPostAsync([FromForm] string? returnUrl)
+    public IActionResult OnPostAsync()
     {
         return SignOut(new AuthenticationProperties
         {
-            RedirectUri = returnUrl
+            RedirectUri = "/SignedOut"
         },
         CookieAuthenticationDefaults.AuthenticationScheme,
         OpenIdConnectDefaults.AuthenticationScheme);
