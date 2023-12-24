@@ -8,12 +8,28 @@ public class LoginModel : PageModel
 {
     public async Task OnGet(string redirectUri)
     {
-        var redirect = !string.IsNullOrEmpty(redirectUri) ? redirectUri : "/";
-
         await HttpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme,
-            new AuthenticationProperties
-            {
-                RedirectUri = redirect
-            });
+            GetAuthProperties(redirectUri));
+    }
+
+    private static AuthenticationProperties GetAuthProperties(string? returnUrl)
+    {
+        const string pathBase = "/";
+
+        // Prevent open redirects.
+        if (string.IsNullOrEmpty(returnUrl))
+        {
+            returnUrl = pathBase;
+        }
+        else if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
+        {
+            returnUrl = new Uri(returnUrl, UriKind.Absolute).PathAndQuery;
+        }
+        else if (returnUrl[0] != '/')
+        {
+            returnUrl = $"{pathBase}{returnUrl}";
+        }
+
+        return new AuthenticationProperties { RedirectUri = returnUrl };
     }
 }
