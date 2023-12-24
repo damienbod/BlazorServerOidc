@@ -1,7 +1,12 @@
 ﻿<AuthorizeView>
     <Authorized>
-        @context.User.Identity?.Name
-        <a href="logout">Log out</a>
+        <form action="logout" method="post">
+            <AntiforgeryToken />
+            <input type="hidden" name="ReturnUrl" value="/SignedOut" />
+            <button type="submit" class="nav-link">
+                 Logout @context.User.Identity?.Name
+            </button>
+        </form>
     </Authorized>
     <NotAuthorized>
         <a href="login?redirectUri=/">Log in</a>

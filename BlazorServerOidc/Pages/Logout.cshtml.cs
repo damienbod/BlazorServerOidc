@@ -8,13 +8,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace BlazorServerOidc.Pages;
 
 [Authorize]
+[IgnoreAntiforgeryToken]
 public class LogoutModel : PageModel
 {
-    public IActionResult OnGetAsync()
+    public void OnGet()
+    {
+    }
+
+    public IActionResult OnPostAsync([FromForm] string? returnUrl)
     {
         return SignOut(new AuthenticationProperties
         {
-            RedirectUri = "/SignedOut"
+            RedirectUri = returnUrl
         },
         CookieAuthenticationDefaults.AuthenticationScheme,
         OpenIdConnectDefaults.AuthenticationScheme);
