@@ -7,12 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BlazorServerOidc.Pages;
 
+/// <summary>
+/// TODO remove IgnoreAntiforgeryToken and add the protection to 
+/// the logout form request if using post
+/// </summary>
 [Authorize]
-[IgnoreAntiforgeryToken] // TODO remove this and add the protection to the logout form request
+[IgnoreAntiforgeryToken]
 public class LogoutModel : PageModel
 {
-    public void OnGet()
+    public IActionResult OnGetAsync()
     {
+        return SignOut(new AuthenticationProperties
+        {
+            RedirectUri = "/SignedOut"
+        },
+        CookieAuthenticationDefaults.AuthenticationScheme,
+        OpenIdConnectDefaults.AuthenticationScheme);
     }
 
     public IActionResult OnPostAsync()
