@@ -55,7 +55,7 @@ public class Program
 
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-        // > .NET 8
+        // < .NET 8
         // JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
         if (!app.Environment.IsDevelopment())
