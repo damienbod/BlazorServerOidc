@@ -4,10 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BlazorServerOidc.Pages;
 
-/// <summary>
-/// Original src:
-/// https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebOidc/BlazorWebOidc/LoginLogoutEndpointRouteBuilderExtensions.cs
-/// </summary>
 public class LoginModel : PageModel
 {
     public async Task OnGet(string redirectUri)
@@ -16,6 +12,10 @@ public class LoginModel : PageModel
             GetAuthProperties(redirectUri));
     }
 
+    /// <summary>
+    /// Original src:
+    /// https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebOidc/BlazorWebOidc/LoginLogoutEndpointRouteBuilderExtensions.cs
+    /// </summary>
     private static AuthenticationProperties GetAuthProperties(string? returnUrl)
     {
         const string pathBase = "/";
