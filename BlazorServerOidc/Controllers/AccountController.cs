@@ -32,7 +32,7 @@ public class AccountController : ControllerBase
     public IActionResult Logout()
     {
         return SignOut(
-            new AuthenticationProperties { RedirectUri = "/" },
+            new AuthenticationProperties { RedirectUri = "/SignedOut" },
             CookieAuthenticationDefaults.AuthenticationScheme,
             OpenIdConnectDefaults.AuthenticationScheme);
     }
