@@ -2,6 +2,7 @@ using BlazorServerOidc.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -47,6 +48,9 @@ public class Program
         builder.Services.AddServerSideBlazor();
         builder.Services.AddSingleton<WeatherForecastService>();
 
+        builder.Services.AddControllersWithViews(options =>
+            options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+
         var app = builder.Build();
 
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -74,6 +78,7 @@ public class Program
         app.UseAuthorization();
 
         app.MapRazorPages();
+        app.MapControllers();
 
         app.MapBlazorHub().RequireAuthorization();
         app.MapFallbackToPage("/_Host");

@@ -1,13 +1,13 @@
 ﻿<AuthorizeView>
     <Authorized>
         <span>@context.User.Identity?.Name</span>
-        <form action="logout" method="post">
+        <form action="api/account/logout" method="post">
             <button type="submit" class="nav-link btn btn-link text-dark">
                  Logout 
             </button>
         </form>
     </Authorized>
     <NotAuthorized>
-        <a href="login?redirectUri=/">Log in</a>
+        <a href="api/account/login?redirectUri=/">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
