@@ -4,7 +4,7 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [![.NET](https://github.com/damienbod/BlazorServerOidc/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/BlazorServerOidc/actions/workflows/dotnet.yml)
 
-[Securing a Blazor Server application using OpenID Connect and security headers](https://damienbod.com)
+[Securing a Blazor Server application using OpenID Connect and security headers](https://damienbod.com/2024/01/03/securing-a-blazor-server-application-using-openid-connect-and-security-headers/)
 
 ### Powershell (identity provider project)
 
