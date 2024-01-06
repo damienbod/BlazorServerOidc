@@ -1,4 +1,4 @@
-﻿namespace BlazorServerOidc;
+﻿namespace BlazorWebFromBlazorServerOidc;
 
 public static class SecurityHeadersDefinitions
 {

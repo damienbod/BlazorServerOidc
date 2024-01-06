@@ -1,4 +1,4 @@
-namespace BlazorServerOidc.Data
+namespace BlazorWebFromBlazorServerOidc.Data
 {
     public class WeatherForecastService
     {

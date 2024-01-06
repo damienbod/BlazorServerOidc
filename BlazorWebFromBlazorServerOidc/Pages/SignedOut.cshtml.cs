@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BlazorServerOidc.Pages;
+namespace BlazorWebFromBlazorServerOidc.Pages;
 
 [AllowAnonymous]
 public class SignedOutModel : PageModel

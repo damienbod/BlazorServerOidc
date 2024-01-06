@@ -1,5 +1,5 @@
-using BlazorServerOidc.Data;
-using BlazorWebFromBlazorServerOidc;
+using BlazorWebFromBlazorServerOidc.Data;
+using BlazorWebFromBlazorWebFromBlazorServerOidc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
-namespace BlazorServerOidc;
+namespace BlazorWebFromBlazorServerOidc;
 
 public class Program
 {
@@ -67,9 +67,10 @@ public class Program
             app.UseHsts();
         }
 
-        app.UseSecurityHeaders(
-            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
-                app.Configuration["OpenIDConnectSettings:Authority"]));
+        // TODO disable as not supported
+        //app.UseSecurityHeaders(
+        //    SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
+        //        app.Configuration["OpenIDConnectSettings:Authority"]));
 
         app.UseHttpsRedirection();
 
