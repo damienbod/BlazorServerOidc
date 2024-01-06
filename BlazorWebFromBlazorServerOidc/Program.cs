@@ -1,4 +1,5 @@
 using BlazorServerOidc.Data;
+using BlazorWebFromBlazorServerOidc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
@@ -45,7 +46,9 @@ public class Program
             options.Filters.Add(new AuthorizeFilter(policy));
         });
 
-        builder.Services.AddServerSideBlazor();
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
+
         builder.Services.AddSingleton<WeatherForecastService>();
 
         builder.Services.AddControllersWithViews(options =>
@@ -77,11 +80,13 @@ public class Program
         app.UseAuthentication();
         app.UseAuthorization();
 
+        app.UseAntiforgery();
+
         app.MapRazorPages();
         app.MapControllers();
 
-        app.MapBlazorHub().RequireAuthorization();
-        app.MapFallbackToPage("/_Host");
+        app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode().RequireAuthorization();
 
         app.Run();
     }
