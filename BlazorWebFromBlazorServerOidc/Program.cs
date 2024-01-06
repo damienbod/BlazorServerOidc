@@ -57,16 +57,13 @@ public class Program
 
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-        // < .NET 8
-        // JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error");
             app.UseHsts();
         }
 
-        // TODO disable as not supported
+        // TODO disable and make unsecure as not supported in Blazor Web ...
         //app.UseSecurityHeaders(
         //    SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
         //        app.Configuration["OpenIDConnectSettings:Authority"]));
