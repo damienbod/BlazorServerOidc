@@ -1,18 +1,22 @@
 ﻿@inject NavigationManager NavigationManager
 
-<div class="nav-item px-3">
-    <AuthorizeView>
-        <Authorized>
+<AuthorizeView>
+    <Authorized>
+        <div class="nav-item">
             <span>@context.User.Identity?.Name</span>
+        </div>
+        <div class="nav-item">
             <form action="api/account/logout" method="post">
                 <AntiforgeryToken />
                 <button type="submit" class="nav-link btn btn-link text-dark">
                     Logout
                 </button>
             </form>
-        </Authorized>
-        <NotAuthorized>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="nav-item">
             <a href="api/account/login?redirectUri=/">Log in</a>
-        </NotAuthorized>
-    </AuthorizeView>
-</div>
+        </div>          
+    </NotAuthorized>
+</AuthorizeView>
