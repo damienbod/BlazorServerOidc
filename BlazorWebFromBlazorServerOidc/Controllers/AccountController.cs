@@ -16,8 +16,8 @@ public class AccountController : ControllerBase
 
         if (claimsChallenge != null)
         {
-            string jsonString = claimsChallenge.Replace("\\", "")
-                .Trim(new char[1] { '"' });
+            string jsonString = claimsChallenge.Replace("\\", string.Empty)
+                .Trim(['"']);
 
             properties.Items["claims"] = jsonString;
         }
