@@ -7,7 +7,7 @@
                 <NotAuthorized>
                     @{
                         var returnUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-                        NavigationManager.NavigateTo($"login?redirectUri={returnUrl}", forceLoad: true);
+                        NavigationManager.NavigateTo($"api/account/login?redirectUri={returnUrl}", forceLoad: true);
                     }
                 </NotAuthorized>
                 <Authorizing>

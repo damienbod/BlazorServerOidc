@@ -1,11 +1,11 @@
-@implements IDisposable
+﻿@implements IDisposable
 
 @inject NavigationManager NavigationManager
 
 <div class="nav-item px-3">
     <AuthorizeView>
         <Authorized>
-            <form action="authentication/logout" method="post">
+            <form action="api/account/logout" method="post">
                 <AntiforgeryToken />
                 <input type="hidden" name="ReturnUrl" value="@currentUrl" />
                 <button type="submit" class="nav-link">
@@ -14,9 +14,7 @@
             </form>
         </Authorized>
         <NotAuthorized>
-            <a class="nav-link" href="authentication/login">
-                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
-            </a>
+            <a href="api/account/login?redirectUri=/">Log in</a>
         </NotAuthorized>
     </AuthorizeView>
 </div>
