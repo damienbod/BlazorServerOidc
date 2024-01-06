@@ -16,8 +16,8 @@ public class AccountController : ControllerBase
 
         if (claimsChallenge != null)
         {
-            string jsonString = claimsChallenge.Replace("\\", "")
-                .Trim(new char[1] { '"' });
+            string jsonString = claimsChallenge.Replace("\\", string.Empty)
+                .Trim(['"']);
 
             properties.Items["claims"] = jsonString;
         }
@@ -25,8 +25,7 @@ public class AccountController : ControllerBase
         return Challenge(properties);
     }
 
-    // [ValidateAntiForgeryToken] // not needed explicitly due the the Auto global definition.
-    [IgnoreAntiforgeryToken] // need to apply this to the form post request
+    [ValidateAntiForgeryToken] // not needed explicitly due the the Auto global definition.
     [Authorize]
     [HttpPost("Logout")]
     public IActionResult Logout()
