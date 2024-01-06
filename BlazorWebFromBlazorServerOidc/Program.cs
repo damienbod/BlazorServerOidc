@@ -45,6 +45,8 @@ public class Program
             options.Filters.Add(new AuthorizeFilter(policy));
         });
 
+        builder.Services.AddHttpContextAccessor();
+
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
 
@@ -63,10 +65,9 @@ public class Program
             app.UseHsts();
         }
 
-        // TODO disable and make unsecure as not supported in Blazor Web ...
-        //app.UseSecurityHeaders(
-        //    SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
-        //        app.Configuration["OpenIDConnectSettings:Authority"]));
+        app.UseSecurityHeaders(
+            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
+                app.Configuration["OpenIDConnectSettings:Authority"]));
 
         app.UseHttpsRedirection();
 

@@ -1,4 +1,5 @@
 ﻿@inject IHostEnvironment Env
+@inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,23 @@
 <body>
     <Routes @rendermode="InteractiveServer" />
 
-    <script src="_framework/blazor.web.js"></script>
+    <script nonce="@GetNonce()" src="_framework/blazor.web.js"></script>
 </body>
 </html>
+
+@code {
+
+    private string GetNonce()
+    {
+        var nonce = string.Empty;
+        Microsoft.Extensions.Primitives.StringValues nonces;
+        var found = HttpContextAccessor.HttpContext!.Response.Headers.TryGetValue("Content-Security-Policy", out nonces);
+
+        if(found)
+        {
+            nonce = nonces.First();
+        };
+
+        return nonce!;
+    }
+}
