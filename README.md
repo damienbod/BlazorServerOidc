@@ -14,6 +14,10 @@ Add-Migration "init_sts" -c ApplicationDbContext
 
 Update-Database -Context ApplicationDbContext
 
+## History
+
+2024-01-11 Added support for Blazor Web, migrated from Blazor Server
+
 ## Links
 
 https://learn.microsoft.com/en-us/aspnet/core/blazor/security/server/
