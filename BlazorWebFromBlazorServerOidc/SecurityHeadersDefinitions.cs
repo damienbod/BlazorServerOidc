@@ -28,8 +28,7 @@ public static class SecurityHeadersDefinitions
                     .Self();
 
                 builder.AddScriptSrc()
-                    .WithNonce()
-                    .UnsafeInline(); // only a fallback for older browsers when the nonce is used
+                    .Self(); 
 
                 // disable script and style CSP protection if using Blazor hot reload
                 // if using hot reload, DO NOT deploy with an insecure CSP

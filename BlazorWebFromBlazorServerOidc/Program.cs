@@ -63,10 +63,10 @@ public class Program
             app.UseHsts();
         }
 
-        // TODO disable and make unsecure as not supported in Blazor Web ...
-        //app.UseSecurityHeaders(
-        //    SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
-        //        app.Configuration["OpenIDConnectSettings:Authority"]));
+        // Using an unsecure CSP as CSP nonce is not supported in Blazor Web ...
+        app.UseSecurityHeaders(
+            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
+                app.Configuration["OpenIDConnectSettings:Authority"]));
 
         app.UseHttpsRedirection();
 
