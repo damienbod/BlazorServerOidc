@@ -8,11 +8,13 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [Migrate ASP.NET Core Blazor Server to Blazor Web](https://damienbod.com/2024/01/15/migrate-asp-net-core-blazor-server-to-blazor-web/)
 
+## Migrations
+
 ### Powershell (identity provider project)
 
 Add-Migration "init_sts" -c ApplicationDbContext  
 
-## Running manually
+### Running manually
 
 Update-Database -Context ApplicationDbContext
 
