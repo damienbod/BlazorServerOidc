@@ -6,6 +6,8 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [Securing a Blazor Server application using OpenID Connect and security headers](https://damienbod.com/2024/01/03/securing-a-blazor-server-application-using-openid-connect-and-security-headers/)
 
+[Migrate ASP.NET Core Blazor Server to Blazor Web](https://damienbod.com)
+
 ### Powershell (identity provider project)
 
 Add-Migration "init_sts" -c ApplicationDbContext  
@@ -13,6 +15,11 @@ Add-Migration "init_sts" -c ApplicationDbContext
 ## Running manually
 
 Update-Database -Context ApplicationDbContext
+
+## History
+
+2024-01-14 Updated packages
+2024-01-11 Added support for Blazor Web, migrated from Blazor Server
 
 ## Links
 
@@ -35,3 +42,11 @@ https://datatracker.ietf.org/doc/html/rfc9126
 https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims
 
 https://stackoverflow.com/questions/59121741/anti-forgery-token-validation-in-mvc-app-with-blazor-server-side-component
+
+## Switch Blazor Server to Blazor Web (Server)
+
+> [!WARNING]  
+> The required security headers cannot be applied to Blazor Web and should not be used in production
+
+https://learn.microsoft.com/en-us/aspnet/core/migration/70-80
+
