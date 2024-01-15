@@ -6,7 +6,7 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [Securing a Blazor Server application using OpenID Connect and security headers](https://damienbod.com/2024/01/03/securing-a-blazor-server-application-using-openid-connect-and-security-headers/)
 
-[Migrate ASP.NET Core Blazor Server to Blazor Web](https://damienbod.com)
+[Migrate ASP.NET Core Blazor Server to Blazor Web](https://damienbod.com/2024/01/15/migrate-asp-net-core-blazor-server-to-blazor-web/)
 
 ### Powershell (identity provider project)
 
