@@ -20,8 +20,8 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
-2024-01-14 Updated packages
-2024-01-11 Added support for Blazor Web, migrated from Blazor Server
+- 2024-01-14 Updated packages
+- 2024-01-11 Added support for Blazor Web, migrated from Blazor Server
 
 ## Links
 
