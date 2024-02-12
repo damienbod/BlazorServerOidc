@@ -1,4 +1,6 @@
 ﻿@inject IHostEnvironment Env
+@inject BlazorNonceService BlazorNonceService
+@using System.Security.Cryptography;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +16,30 @@
 <body>
     <Routes @rendermode="InteractiveServer" />
 
-    <script src="_framework/blazor.web.js"></script>
+    <script nonce="@BlazorNonceService.Nonce" src="_framework/blazor.web.js"></script>
 </body>
 </html>
+
+@code
+{
+    [CascadingParameter] HttpContext Context { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        var nonce = GetOrCreateNonce();
+        if (nonce != null)
+        {
+            BlazorNonceService.SetNonce(nonce);
+        }
+    }
+
+    public string? GetOrCreateNonce()
+    {
+        if (Context.Items.TryGetValue("nonce", out var item) && item is string nonce and not null)
+        {
+            return nonce;
+        }
+
+        return null;
+    }
+}

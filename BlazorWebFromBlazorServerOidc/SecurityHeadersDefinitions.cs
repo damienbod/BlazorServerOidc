@@ -27,11 +27,13 @@ public static class SecurityHeadersDefinitions
                     .UnsafeInline()
                     .Self();
 
+                // due to Blazor
                 builder.AddScriptSrc()
-                    .Self(); 
-
-                // disable script and style CSP protection if using Blazor hot reload
-                // if using hot reload, DO NOT deploy with an insecure CSP
+                      .WithNonce()
+                      .UnsafeEval() // due to Blazor WASM
+                      .StrictDynamic()
+                      .OverHttps()
+                      .UnsafeInline(); // only a fallback for older browsers when the nonce is used 
             })
             .RemoveServerHeader()
             .AddPermissionsPolicy(builder =>
