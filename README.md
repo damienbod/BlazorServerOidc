@@ -49,7 +49,9 @@ https://stackoverflow.com/questions/59121741/anti-forgery-token-validation-in-mv
 ## Switch Blazor Server to Blazor Web (Server)
 
 > [!WARNING]  
-> The required security headers cannot be applied to Blazor Web and should not be used in production
+> The required security headers can only be applied to Blazor Web in Server mode
+
+https://github.com/javiercn/BlazorWebNonceService
 
 https://learn.microsoft.com/en-us/aspnet/core/migration/70-80
 
