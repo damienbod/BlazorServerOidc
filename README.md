@@ -49,7 +49,7 @@ https://stackoverflow.com/questions/59121741/anti-forgery-token-validation-in-mv
 ## Switch Blazor Server to Blazor Web (Server)
 
 > [!WARNING]  
-> The required security headers can only be applied to Blazor Web in Server mode
+> The required security headers can only be applied to Blazor Web in InteractiveServer mode
 
 https://github.com/javiercn/BlazorWebNonceService
 
