@@ -2,8 +2,10 @@ using BlazorWebFromBlazorServerOidc.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
@@ -15,6 +17,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.TryAddEnumerable(ServiceDescriptor.Scoped<CircuitHandler, BlazorNonceService>(sp =>
+        sp.GetRequiredService<BlazorNonceService>()));
+
+        builder.Services.AddScoped<BlazorNonceService>();
 
         builder.Services.AddAuthentication(options =>
         {
@@ -67,6 +74,8 @@ public class Program
         app.UseSecurityHeaders(
             SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
                 app.Configuration["OpenIDConnectSettings:Authority"]));
+
+        app.UseMiddleware<NonceMiddleware>();
 
         app.UseHttpsRedirection();
 
