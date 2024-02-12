@@ -29,14 +29,14 @@
 
     protected override void OnInitialized()
     {
-        var nonce = GetOrCreateNonce();
+        var nonce = GetNonce();
         if (nonce != null)
         {
             BlazorNonceService.SetNonce(nonce);
         }
     }
 
-    public string? GetOrCreateNonce()
+    public string? GetNonce()
     {
         if (Context.Items.TryGetValue("nonce", out var item) && item is string nonce and not null)
         {
