@@ -18,6 +18,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
+
         builder.Services.TryAddEnumerable(ServiceDescriptor.Scoped<CircuitHandler, BlazorNonceService>(sp =>
         sp.GetRequiredService<BlazorNonceService>()));
 
@@ -51,9 +54,6 @@ public class Program
                 .Build();
             options.Filters.Add(new AuthorizeFilter(policy));
         });
-
-        builder.Services.AddRazorComponents()
-            .AddInteractiveServerComponents();
 
         builder.Services.AddSingleton<WeatherForecastService>();
 
