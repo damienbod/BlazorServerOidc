@@ -22,6 +22,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2024-02-19 Updated packages
 - 2024-02-16 Updated packages
 - 2024-02-12 Fix CSP, use nonce
 - 2024-01-14 Updated packages
