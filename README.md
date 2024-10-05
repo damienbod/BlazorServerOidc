@@ -22,6 +22,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2024-10-03 Updated packages, updated security headers
 - 2024-06-22 Updated packages
 - 2024-05-26 Updated packages
 - 2024-04-24 Updated packages
