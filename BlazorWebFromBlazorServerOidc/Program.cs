@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 namespace BlazorWebFromBlazorServerOidc;
 
@@ -17,6 +18,13 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddSecurityHeaderPolicies()
+            .SetPolicySelector((PolicySelectorContext ctx) =>
+            {
+                return SecurityHeadersDefinitions.GetHeaderPolicyCollection(builder.Environment.IsDevelopment(),
+                    builder.Configuration["OpenIDConnectSettings:Authority"]);
+            });
 
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
@@ -71,9 +79,7 @@ public class Program
         }
 
         // Using an unsecure CSP as CSP nonce is not supported in Blazor Web ...
-        app.UseSecurityHeaders(
-            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
-                app.Configuration["OpenIDConnectSettings:Authority"]));
+        app.UseSecurityHeaders();
 
         app.UseMiddleware<NonceMiddleware>();
 

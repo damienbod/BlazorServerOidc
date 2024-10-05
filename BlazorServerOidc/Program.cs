@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 namespace BlazorServerOidc;
 
@@ -15,6 +16,13 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddSecurityHeaderPolicies()
+            .SetPolicySelector((PolicySelectorContext ctx) =>
+            {
+                return SecurityHeadersDefinitions.GetHeaderPolicyCollection(builder.Environment.IsDevelopment(),
+                    builder.Configuration["OpenIDConnectSettings:Authority"]);
+            });
 
         builder.Services.AddAuthentication(options =>
         {
@@ -64,9 +72,7 @@ public class Program
             app.UseHsts();
         }
 
-        app.UseSecurityHeaders(
-            SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment(),
-                app.Configuration["OpenIDConnectSettings:Authority"]));
+        app.UseSecurityHeaders();
 
         app.UseHttpsRedirection();
 
