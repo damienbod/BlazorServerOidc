@@ -1,4 +1,6 @@
-﻿namespace BlazorWebFromBlazorServerOidc;
+﻿using NetEscapades.AspNetCore.SecurityHeaders;
+
+namespace BlazorWebFromBlazorServerOidc;
 
 public class NonceMiddleware
 {
@@ -11,10 +13,11 @@ public class NonceMiddleware
 
     public async Task Invoke(HttpContext context, BlazorNonceService blazorNonceService)
     {
-        var success = context.Items.TryGetValue("NETESCAPADES_NONCE", out var nonce);
-        if (success && nonce != null)
+        var nonce = context.GetNonce();
+
+        if (nonce != null)
         {
-            blazorNonceService.SetNonce(nonce.ToString()!);
+            blazorNonceService.SetNonce(nonce);
         }
         await _next.Invoke(context);
     }
