@@ -29,7 +29,7 @@ public class Program
 
         builder.Services.AddSecurityHeaderPolicies()
             .SetDefaultPolicy(SecurityHeadersDefinitions
-            .GetHeaderPolicyCollection(oidcConfig["Authority"], 
+            .GetHeaderPolicyCollection(oidcConfig["Authority"],
                 builder.Environment.IsDevelopment()));
 
         builder.Services.AddCascadingAuthenticationState();
@@ -42,7 +42,7 @@ public class Program
         }
         else
         {
-            IdentityModelEventSource.ShowPII = true; 
+            IdentityModelEventSource.ShowPII = true;
             IdentityModelEventSource.LogCompleteSecurityArtifact = true;
         }
 
