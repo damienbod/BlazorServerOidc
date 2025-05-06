@@ -33,6 +33,7 @@ public class Program
                 builder.Environment.IsDevelopment()));
 
         builder.Services.AddCascadingAuthenticationState();
+
         var app = builder.Build();
 
         if (!app.Environment.IsDevelopment())
@@ -51,6 +52,9 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAntiforgery();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapStaticAssets();
         app.MapRazorComponents<App>()
