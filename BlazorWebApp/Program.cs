@@ -1,5 +1,9 @@
 using BlazorWebApp.Components;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BlazorWebApp;
 
@@ -17,7 +21,31 @@ public class Program
 
         var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
 
-        builder.Services.AddAuthenticationCore();
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
+        })
+        .AddCookie(options =>
+        {
+            options.Cookie.Name = "__Host-blazorwebapp";
+            options.Cookie.SameSite = SameSiteMode.Strict;
+        })
+        .AddOpenIdConnect(options =>
+        {
+            builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
+
+            options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.ResponseType = OpenIdConnectResponseType.Code;
+
+            options.SaveTokens = true;
+            options.GetClaimsFromUserInfoEndpoint = true;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                NameClaimType = "name"
+            };
+        });
 
         builder.Services.AddAntiforgery(options =>
         {
@@ -32,6 +60,8 @@ public class Program
             .GetHeaderPolicyCollection(oidcConfig["Authority"],
                 builder.Environment.IsDevelopment()));
 
+        builder.Services.AddAuthenticationCore();
+        builder.Services.AddAuthorization();
         builder.Services.AddCascadingAuthenticationState();
 
         var app = builder.Build();
