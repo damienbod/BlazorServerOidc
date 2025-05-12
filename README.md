@@ -69,3 +69,4 @@ https://github.com/javiercn/BlazorWebNonceService
 
 https://learn.microsoft.com/en-us/aspnet/core/migration/70-80
 
+https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models
