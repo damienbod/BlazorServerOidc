@@ -82,9 +82,7 @@ public class Program
         app.UseSecurityHeaders();
 
         app.UseHttpsRedirection();
-
         app.UseAntiforgery();
-
         app.UseAuthentication();
         app.UseAuthorization();
 
