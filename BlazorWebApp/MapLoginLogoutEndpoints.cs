@@ -30,7 +30,7 @@ public static class LoginLogoutEndpoints
             {
                 context.Response.Redirect("/");
             }
-        }).AllowAnonymous();
+        });
 
         return app;
     }
