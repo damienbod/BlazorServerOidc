@@ -32,7 +32,7 @@ public class Program
             options.Cookie.Name = "__Host-blazorwebapp";
             options.Cookie.SameSite = SameSiteMode.Lax;
             // can be strict if same-site
-            options.Cookie.SameSite = SameSiteMode.Strict;
+            //options.Cookie.SameSite = SameSiteMode.Strict;
         })
         .AddOpenIdConnect(options =>
         {
