@@ -8,6 +8,8 @@ Implements a confidential client using OpenID Connect (code flow with PKCE)
 
 [Migrate ASP.NET Core Blazor Server to Blazor Web](https://damienbod.com/2024/01/15/migrate-asp-net-core-blazor-server-to-blazor-web/)
 
+## Old blogs
+
 [Using a CSP nonce in Blazor Web](https://damienbod.com/2024/02/19/using-a-csp-nonce-in-blazor-web/)
 
 ## Migrations
@@ -22,6 +24,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2025-05-25 Updated packages
 - 2025-05-06 Updated packages
 - 2024-12-31 Updated packages, .NET 9
 - 2024-10-21 Updated packages
@@ -67,3 +70,4 @@ https://github.com/javiercn/BlazorWebNonceService
 
 https://learn.microsoft.com/en-us/aspnet/core/migration/70-80
 
+https://learn.microsoft.com/en-us/aspnet/core/blazor/hosting-models
