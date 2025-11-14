@@ -26,6 +26,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2025-11-14 Updated packages. .NET 10
 - 2025-05-25 Updated packages, new CSP nonce implementation
 - 2025-05-06 Updated packages
 - 2024-12-31 Updated packages, .NET 9
