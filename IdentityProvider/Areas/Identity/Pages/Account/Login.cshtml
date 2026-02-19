@@ -1,4 +1,5 @@
 ﻿@page
+@using OpeniddictServer.Passkeys
 @model LoginModel
 
 @{
@@ -45,6 +46,10 @@
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
                 </div>
+
+                <passkey-submit operation="@PasskeyOperation.Request" name="Input.Passkey" email-name="Input.Username" class="btn btn-outline-primary position-relative" formnovalidate>
+                    Log in with a passkey
+                </passkey-submit>
             </form>
         </section>
     </div>
@@ -83,4 +88,5 @@
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/passkey-submit.js" asp-append-version="true"></script>
 }

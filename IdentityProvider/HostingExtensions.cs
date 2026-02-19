@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 using OpeniddictServer.Data;
+using OpeniddictServer.Passkeys;
 using Quartz;
 using Serilog;
 using System.IdentityModel.Tokens.Jwt;
@@ -176,6 +177,8 @@ internal static class HostingExtensions
 
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.MapPasskeyEndpoints();
 
         app.UseSession();
 
