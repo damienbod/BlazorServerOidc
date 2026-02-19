@@ -1,5 +1,3 @@
-using Fido2Identity;
-using Fido2NetLib;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
@@ -39,11 +37,7 @@ internal static class HostingExtensions
         services.AddIdentity<ApplicationUser, IdentityRole>()
           .AddEntityFrameworkStores<ApplicationDbContext>()
           .AddDefaultTokenProviders()
-          .AddDefaultUI()
-          .AddTokenProvider<Fido2UserTwoFactorTokenProvider>("FIDO2");
-
-        services.Configure<Fido2Configuration>(configuration.GetSection("fido2"));
-        services.AddScoped<Fido2Store>();
+          .AddDefaultUI();
 
         services.AddDistributedMemoryCache();
 

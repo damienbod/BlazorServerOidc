@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Fido2Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +14,12 @@ namespace OpeniddictServer.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly Fido2Store _fido2Store;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
-            Fido2Store fido2Store,
             ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
-            _fido2Store = fido2Store;
             _logger = logger;
         }
 
@@ -118,12 +114,6 @@ namespace OpeniddictServer.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    var fido2ItemExistsForUser = await _fido2Store.GetCredentialsByUserNameAsync(Input.Email);
-                    if (fido2ItemExistsForUser.Count > 0)
-                    {
-                        return RedirectToPage("./LoginFido2Mfa", new { ReturnUrl = returnUrl, Input.RememberMe });
-                    }
-
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)

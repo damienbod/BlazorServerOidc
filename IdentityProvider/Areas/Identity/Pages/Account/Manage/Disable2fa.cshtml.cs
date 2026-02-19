@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Fido2Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,15 +13,12 @@ namespace OpeniddictServer.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
-        private readonly Fido2Store _fido2Store;
-
+  
         public Disable2faModel(
             UserManager<ApplicationUser> userManager,
-            Fido2Store fido2Store,
             ILogger<Disable2faModel> logger)
         {
             _userManager = userManager;
-            _fido2Store = fido2Store;
             _logger = logger;
         }
 
@@ -56,9 +52,6 @@ namespace OpeniddictServer.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            // remove Fido2 MFA if it exists
-            await _fido2Store.RemoveCredentialsByUserNameAsync(user.UserName);
 
             var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
