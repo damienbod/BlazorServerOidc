@@ -34,10 +34,13 @@ internal static class HostingExtensions
 
         services.AddDatabaseDeveloperPageExceptionFilter();
 
-        services.AddIdentity<ApplicationUser, IdentityRole>()
-          .AddEntityFrameworkStores<ApplicationDbContext>()
-          .AddDefaultTokenProviders()
-          .AddDefaultUI();
+        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        {
+            options.Stores.SchemaVersion = IdentitySchemaVersions.Version3;
+        })
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders()
+        .AddDefaultUI();
 
         services.AddDistributedMemoryCache();
 
