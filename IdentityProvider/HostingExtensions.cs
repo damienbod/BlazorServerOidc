@@ -148,6 +148,8 @@ internal static class HostingExtensions
         services.AddHostedService<Worker>();
 
 
+        services.AddAntiforgery();
+
         return builder.Build();
     }
 
