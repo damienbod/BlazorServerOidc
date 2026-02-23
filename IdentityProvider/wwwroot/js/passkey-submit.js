@@ -75,6 +75,10 @@ customElements.define('passkey-submit', class extends HTMLElement {
       [this.attrs.requestTokenName]: this.attrs.requestTokenValue,
     };
 
+      console.log('--headers--');
+      const jsonString = JSON.stringify(headers);
+      console.log(jsonString);
+      
     if (this.attrs.operation === 'Create') {
       return await createCredential(headers, signal);
     } else if (this.attrs.operation === 'Request') {
