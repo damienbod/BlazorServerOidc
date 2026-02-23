@@ -147,9 +147,6 @@ internal static class HostingExtensions
         // Note: in a real world application, this step should be part of a setup script.
         services.AddHostedService<Worker>();
 
-
-        services.AddAntiforgery();
-
         return builder.Build();
     }
 
@@ -173,20 +170,22 @@ internal static class HostingExtensions
         }
 
         app.UseHttpsRedirection();
-        app.UseStaticFiles();
-
         app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.MapPasskeyEndpoints();
+        app.MapStaticAssets();
 
         app.UseSession();
 
+        app.MapPasskeyEndpoints();
+
         app.MapControllers();
         app.MapDefaultControllerRoute();
-        app.MapRazorPages();
+        app.MapRazorPages()
+            .RequireAuthorization()
+            .WithStaticAssets();
 
         return app;
     }
