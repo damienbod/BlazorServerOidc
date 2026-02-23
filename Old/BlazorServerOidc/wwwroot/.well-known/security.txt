@@ -1,3 +1,0 @@
-Security email
-
-contact: mailto: security-dev-officer@secure.ch
