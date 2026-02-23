@@ -22,6 +22,13 @@ internal static class HostingExtensions
         services.AddControllersWithViews();
         services.AddRazorPages();
 
+        services.AddHttpContextAccessor();
+
+        services.AddAntiforgery(options =>
+        {
+            options.HeaderName = "__RequestVerificationToken";
+        });
+
         services.AddDbContext<ApplicationDbContext>(options =>
         {
             // Configure the context to use Microsoft SQL Server.
@@ -170,12 +177,13 @@ internal static class HostingExtensions
         }
 
         app.UseHttpsRedirection();
+        app.UseStaticFiles();
         app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
-
         app.MapStaticAssets();
+        app.UseAntiforgery();
 
         app.UseSession();
 
@@ -184,7 +192,6 @@ internal static class HostingExtensions
         app.MapControllers();
         app.MapDefaultControllerRoute();
         app.MapRazorPages()
-            .RequireAuthorization()
             .WithStaticAssets();
 
         return app;
