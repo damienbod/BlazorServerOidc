@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
-using OpeniddictServer.Data;
-using OpeniddictServer.Passkeys;
+using IdentityProvider.Data;
+using IdentityProvider.Passkeys;
 using Quartz;
 using Serilog;
 using System.IdentityModel.Tokens.Jwt;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpeniddictServer;
+namespace IdentityProvider
+    ;
 
 internal static class HostingExtensions
 {

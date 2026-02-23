@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 using System.ComponentModel.DataAnnotations;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account;
+namespace IdentityProvider.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
 public class LoginModel : PageModel

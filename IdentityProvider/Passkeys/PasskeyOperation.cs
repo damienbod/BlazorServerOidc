@@ -1,4 +1,4 @@
-namespace OpeniddictServer.Passkeys;
+namespace IdentityProvider.Passkeys;
 
 public enum PasskeyOperation
 {

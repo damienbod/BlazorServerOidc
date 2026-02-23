@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 
-namespace OpeniddictServer.Passkeys;
+namespace IdentityProvider.Passkeys;
 
 public static class PasskeyEndpointRouteBuilderExtensions
 {

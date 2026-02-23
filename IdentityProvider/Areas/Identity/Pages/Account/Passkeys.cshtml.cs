@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 using System.Buffers.Text;
 using System.Diagnostics.CodeAnalysis;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account;
+namespace IdentityProvider.Areas.Identity.Pages.Account;
 
 public class PasskeysModel : PageModel
 {

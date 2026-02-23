@@ -1,4 +1,4 @@
-namespace OpeniddictServer.Data;
+namespace IdentityProvider.Data;
 
 public class PasskeyInputModel
 {

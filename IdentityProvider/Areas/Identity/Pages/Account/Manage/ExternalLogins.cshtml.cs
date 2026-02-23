@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account.Manage;
+namespace IdentityProvider.Areas.Identity.Pages.Account.Manage;
 
 public class ExternalLoginsModel : PageModel
 {

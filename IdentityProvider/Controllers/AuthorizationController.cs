@@ -13,13 +13,13 @@ using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
-using OpeniddictServer.Data;
-using OpeniddictServer.Helpers;
-using OpeniddictServer.ViewModels.Authorization;
+using IdentityProvider.Data;
+using IdentityProvider.Helpers;
+using IdentityProvider.ViewModels.Authorization;
 using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpeniddictServer.Controllers;
+namespace IdentityProvider.Controllers;
 
 public class AuthorizationController : Controller
 {

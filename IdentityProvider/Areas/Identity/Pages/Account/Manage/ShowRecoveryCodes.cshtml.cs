@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account.Manage;
+namespace IdentityProvider.Areas.Identity.Pages.Account.Manage;
 
 public class ShowRecoveryCodesModel : PageModel
 {

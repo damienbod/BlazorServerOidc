@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account.Manage;
+namespace IdentityProvider.Areas.Identity.Pages.Account.Manage;
 
 public static class ManageNavPages
 {

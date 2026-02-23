@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 using System.Buffers.Text;
 
-namespace OpeniddictServer.Areas.Identity.Pages.Account;
+namespace IdentityProvider.Areas.Identity.Pages.Account;
 
 public class RenamePasskeyModel : PageModel
 {
