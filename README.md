@@ -26,6 +26,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2026-05-14 Updated packages
 - 2026-03-15 Updated packages
 - 2026-02-23 Updated passkeys
 - 2026-02-15 Updated packages
