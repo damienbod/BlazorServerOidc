@@ -29,10 +29,11 @@ public class Program
         })
         .AddCookie(options =>
         {
-            options.Cookie.Name = "__Host-blazorwebapp";
+            options.Cookie.Name = "__Host-Http-blazorwebapp";
             options.Cookie.SameSite = SameSiteMode.Lax;
             // can be strict if same-site
             //options.Cookie.SameSite = SameSiteMode.Strict;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         })
         .AddOpenIdConnect(options =>
         {
@@ -52,7 +53,7 @@ public class Program
         builder.Services.AddAntiforgery(options =>
         {
             options.HeaderName = "X-XSRF-TOKEN";
-            options.Cookie.Name = "__Host-core-X-XSRF-TOKEN";
+            options.Cookie.Name = "__Host-Http-X-XSRF-TOKEN";
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         });
@@ -75,6 +76,7 @@ public class Program
         }
         else
         {
+            // IMPORTANT: ShowPII must be false in non development environments
             IdentityModelEventSource.ShowPII = true;
             IdentityModelEventSource.LogCompleteSecurityArtifact = true;
         }
