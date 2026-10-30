@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 
 namespace BlazorWebApp;
@@ -11,15 +12,17 @@ public static class LoginLogoutEndpoints
     {
         app.MapGet("/login", async context =>
         {
-            var returnUrl = context.Request.Query["returnUrl"];
+            var returnUrl = GetLocalReturnUrl(context.Request.Query["returnUrl"]);
 
             await context.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, new AuthenticationProperties
             {
-                RedirectUri = returnUrl == StringValues.Empty ? "/" : returnUrl.ToString()
+                RedirectUri = returnUrl
             });
         }).AllowAnonymous();
 
-        app.MapPost("/logout", async context =>
+        app.MapPost("/logout", async (
+            HttpContext context,
+            [FromForm(Name = "ReturnUrl")] string? returnUrl) =>
         {
             if (context.User.Identity?.IsAuthenticated ?? false)
             {
@@ -35,4 +38,20 @@ public static class LoginLogoutEndpoints
         return app;
     }
 
+    private static string GetLocalReturnUrl(StringValues returnUrl)
+    {
+        var value = returnUrl.ToString();
+
+        if (string.IsNullOrEmpty(value)
+            || value[0] != '/'
+            || value.StartsWith("//", StringComparison.Ordinal)
+            || value.StartsWith("/\\", StringComparison.Ordinal)
+            || value.Contains('\\')
+            || value.Any(char.IsControl))
+        {
+            return "/";
+        }
+
+        return value;
+    }
 }
