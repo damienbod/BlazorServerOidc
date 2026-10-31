@@ -84,9 +84,9 @@ public class Program
         app.UseSecurityHeaders();
 
         app.UseHttpsRedirection();
-        app.UseAntiforgery();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseAntiforgery();
 
         app.MapStaticAssets();
         app.MapRazorComponents<App>()
