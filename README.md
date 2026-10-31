@@ -26,6 +26,7 @@ Update-Database -Context ApplicationDbContext
 
 ## History
 
+- 2026-10-31 Updated packages, Antiforgery token fix
 - 2026-10-21 Updated packages
 - 2026-05-14 Updated packages
 - 2026-03-15 Updated packages
